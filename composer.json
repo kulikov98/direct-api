@@ -8,5 +8,7 @@
             "email": "kulikov98@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "slim/slim": "^3.12"
+    }
 }
