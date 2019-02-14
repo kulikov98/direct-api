@@ -1,0 +1,12 @@
+{
+    "name": "kulikov98/direct-api",
+    "description": "Simple app for yandex direct API",
+    "type": "project",
+    "authors": [
+        {
+            "name": "V. Kulikov",
+            "email": "kulikov98@gmail.com"
+        }
+    ],
+    "require": {}
+}
