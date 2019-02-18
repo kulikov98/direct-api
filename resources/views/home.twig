@@ -1,0 +1,20 @@
+{% extends 'templates/app.twig' %}
+
+{% block content %}
+<div class="col-sm-6">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>API-key</th>
+            </tr>
+        </thead>
+        <tr>
+            <td>{{ result.name }}</td>
+            <td>{{ result.email }}</td>
+            <td>{{ result.api_key }}</td>
+        </tr>
+    </table>
+</div>
+{% endblock %}

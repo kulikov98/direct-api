@@ -9,6 +9,13 @@
         }
     ],
     "require": {
-        "slim/slim": "^3.12"
+        "slim/slim": "^3.12",
+        "slim/twig-view": "^2.4",
+        "illuminate/database": "^5.7"
+    },
+    "autoload" : {
+        "psr-4" : {
+            "App\\" : "app"
+        }
     }
 }
