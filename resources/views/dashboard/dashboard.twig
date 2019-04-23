@@ -1,0 +1,88 @@
+{% extends 'templates/app.twig' %}
+
+{% block content %}
+
+{% if accounts is empty %}
+
+<h1>Добро пожаловать!</h1>
+<p>Добавьте свой первый ресурс.</p>
+
+{% else %}
+
+<h1>Dashboard</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Ресурс</th>
+      <th scope="col">Яндекс Директ</th>
+      <th scope="col">Яндекс Маркет</th>
+      <th scope="col">Google Ads</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for name, account in accounts %}
+    <tr>
+      <th scope="row">{{ loop.index }}</th>
+      <td>{{ name }}</td>
+      {# yandex_direct #}
+      {% if account.yandex_direct_balance != '' %}
+        <td>{{ account.yandex_direct_balance }} руб.</td>
+      {% else %}
+        <td><a href=" {{ path_for('dashboard.add.account') }}?account=yandex_direct&id={{ account.id }}">Добавить</a></td>
+      {% endif %}
+      {# yandex_market #}
+      {% if account.yandex_market_balance %}
+        <td>{{ account.yandex_market_balance }} руб.</td>
+      {% else %}
+        <td><a href="#">Добавить</a></td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<p>Последнее обновление: <strong>{{ accounts | first.updated_at }}</strong>
+  <button id="update" type="button" class="btn btn-secondary btn-sm">Обновить
+      
+  </button>
+  {{ csrf.field | raw }}
+</p>
+{% endif %}
+<a href="{{ path_for('dashboard.add.resource') }}" class="btn btn-outline-primary">Добавить ресурс</a>
+
+<script>
+    if (document.getElementById('update')) {
+      document.getElementById('update').addEventListener('click', update);
+    }
+  
+    function update(){
+
+      var request = {
+        csrf_name: document.querySelector('input[name="csrf_name"]').value,
+        csrf_value: document.querySelector('input[name="csrf_value"]').value,
+      }
+
+      request = JSON.stringify(request);
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', document.location.href, true);
+      xhr.setRequestHeader('Content-Type', 'application/json, application/x-www-form-urlencoded; charset=utf-8');
+      xhr.onload = function(){
+        // error
+        if (this.status != 200) {
+          var div = document.createElement('div');
+          div.innerHTML = this.responseText;
+          document.body.appendChild(div);
+        }
+        // success
+        if (this.status === 200 && this.responseText === 'success') {
+          document.location.reload();
+        }
+      }
+      xhr.send(request);
+
+      this.setAttribute('disabled', 'disabled');
+      this.innerHTML = 'Обновляем... <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
+    }
+  </script>
+{% endblock %}

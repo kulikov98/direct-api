@@ -1,15 +1,9 @@
 {% extends 'templates/app.twig' %}
 
 {% block content %}
-<div class="col-sm-6">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>API-key</th>
-            </tr>
-        </thead>
-    </table>
-</div>
+    {% if auth.check %}
+        <span>{{ data.email }}</span>
+    {% else %}
+        <span>yaya</span>
+    {% endif %}
 {% endblock %}

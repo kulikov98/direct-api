@@ -38,8 +38,11 @@ $container['auth'] = function ($container) {
 
 $container['view'] = function ($container) {
     $view = new \Slim\Views\Twig(__DIR__ . '/../resources/views', [
-        'cache' => false
+        'cache' => false,
+        'debug' => true
     ]);
+    $view->addExtension(new \Twig\Extension\DebugExtension());
+
 
     // Instantiate and add Slim specific extension
     $basePath = rtrim(str_ireplace('index.php', '', $container['request']->getUri()->getBasePath()), '/');
@@ -65,6 +68,10 @@ $container['HomeController'] = function ($container) {
 $container['AuthController'] = function ($container) {
     return new \App\Controllers\Auth\AuthController($container);
 };
+$container['DashboardController'] = function ($container) {
+    return new \App\Controllers\DashboardController($container);
+};
+
 $container['csrf'] = function ($container) {
     return new \Slim\Csrf\Guard;
 };
