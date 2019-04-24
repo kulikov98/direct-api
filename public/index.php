@@ -2,8 +2,7 @@
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
-require('../vendor/autoload.php');
-require('routes.php');
+require __DIR__ . '/../vendor/autoload.php';
 
 session_start();
 
@@ -89,5 +88,7 @@ $app->add(new \App\Middleware\CsrfViewMiddleware($container));
 $app->add($container->csrf);
 
 v::with('App\\Validation\\Rules');
+
+require __DIR__ . '/../app/routes.php';
 
 $app->run();
