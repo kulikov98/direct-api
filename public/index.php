@@ -8,15 +8,17 @@ session_start();
 
 use Respect\Validation\Validator as v;
 
+$dbopts = parse_url(getenv('DATABASE_URL'));
 $settings = [
     'displayErrorDetails' => true,
     'addContentLengthHeader' => false,
     'db' => [
         'driver' => 'pgsql',
-        'host' => 'localhost',
-        'database' => 'direct-api',
-        'username' => 'kulikov98',
-        'password' => 'direct-api'
+        'user' => $dbopts["user"],
+        'password' => $dbopts["pass"],
+        'host' => $dbopts["host"],
+        'port' => $dbopts["port"],
+        'dbname' => ltrim($dbopts["path"], '/')
     ]
 ];
 
