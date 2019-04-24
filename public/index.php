@@ -14,11 +14,10 @@ $settings = [
     'addContentLengthHeader' => false,
     'db' => [
         'driver' => 'pgsql',
-        'user' => $dbopts["user"],
-        'password' => $dbopts["pass"],
         'host' => $dbopts["host"],
-        'port' => $dbopts["port"],
-        'dbname' => ltrim($dbopts["path"], '/')
+        'database' => ltrim($dbopts["path"], '/'),
+        'username' => $dbopts["user"],
+        'password' => $dbopts["pass"]
     ]
 ];
 

@@ -13,3 +13,12 @@ CREATE TABLE resources (
     created_at timestamp,
     updated_at timestamp
 );
+
+CREATE TABLE users (
+    id int PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    name varchar(255),
+    email varchar(255) not null unique,
+    password varchar(255) not null,
+    created_at timestamp,
+    updated_at timestamp
+);
