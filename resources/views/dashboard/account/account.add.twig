@@ -110,7 +110,7 @@
       xhr.onload = function(){
         console.log(this.responseText);
         if (this.status === 200 && this.responseText === 'success') {
-          document.location.href = document.location.origin + "/public/dashboard/";
+          document.location.href = document.location.origin + "/dashboard/";
         }
       };
       xhr.send();
