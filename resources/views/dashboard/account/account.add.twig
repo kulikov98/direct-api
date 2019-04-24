@@ -76,7 +76,7 @@
       console.log(response);
       if (this.status === 200 && response === 'ok') {
         div.remove();
-        location.href = "https://oauth.yandex.ru/authorize?response_type=token&client_id=e38428b0273d4f06a2ea58c0b672f600&redirect_uri=https://direct-api.herokuapp.com/public/dashboard/add/&login_hint=" + JSON.parse(request).login;
+        location.href = "https://oauth.yandex.ru/authorize?response_type=token&client_id=e38428b0273d4f06a2ea58c0b672f600&redirect_uri=https://direct-api.herokuapp.com/dashboard/add/&login_hint=" + JSON.parse(request).login;
       } else {
         //document.location.reload();
       }
